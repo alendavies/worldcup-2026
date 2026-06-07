@@ -1,0 +1,20 @@
+{
+  "name": "worldcup-2026",
+  "private": true,
+  "packageManager": "pnpm@10.0.0",
+  "scripts": {
+    "dev": "turbo dev",
+    "dev:web": "pnpm --filter web dev",
+    "dev:mobile": "pnpm --filter mobile start",
+    "build": "turbo build",
+    "build:web": "pnpm --filter web build",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "turbo": "latest",
+    "prettier": "latest",
+    "typescript": "latest"
+  }
+}

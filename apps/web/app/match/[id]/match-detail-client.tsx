@@ -27,7 +27,7 @@ export function MatchDetailClient({ match }: { match: UiMatch }) {
                 {t('match.back')}
             </Button>
 
-            <Card className="overflow-hidden rounded-2xl border-border shadow-sm">
+            <Card className="overflow-hidden rounded-2xl border-border shadow-sm p-0">
                 {isLive && <div className="h-1 w-full bg-accent" />}
                 
                 <div className="p-6 md:p-10">

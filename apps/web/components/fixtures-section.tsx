@@ -7,7 +7,7 @@ import { fixtureMatches, type FixtureStatusFilter } from '@/components/web-data'
 
 export function FixturesSection() {
     const { t } = useLanguage();
-    const [active, setActive] = useState<FixtureStatusFilter>('all');
+    const [active, setActive] = useState<FixtureStatusFilter>('upcoming');
 
     const filters: { label: string; value: FixtureStatusFilter }[] = [
         { label: t('fixtures.filter.all'), value: 'all' },

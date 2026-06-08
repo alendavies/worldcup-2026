@@ -246,7 +246,7 @@ export function FixturesSection() {
             <div className='mt-10 flex flex-col gap-10'>
                 {visibleGroups.map(([date, matches]) => (
                     <div key={date} className='flex flex-col gap-4'>
-                        <div className='sticky top-16 z-10 bg-background/95 py-2 backdrop-blur'>
+                        <div className='py-2'>
                             <h3 className='font-mono text-sm font-bold uppercase tracking-wider text-foreground'>
                                 {dateLabel(date, lang)}
                             </h3>

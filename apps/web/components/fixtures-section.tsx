@@ -111,12 +111,22 @@ export function FixturesSection() {
         setVisibleCount(12);
     };
 
+    const clearFilters = () => {
+        setActive('upcoming');
+        setSelectedGroup('all');
+        setSelectedTeam('all');
+        setVisibleCount(12);
+    };
+
+    const filtersAreDefault =
+        active === 'upcoming' && selectedGroup === 'all' && selectedTeam === 'all';
+
     return (
         <section
             id='fixtures'
             className='mx-auto w-full max-w-6xl scroll-mt-20 px-5 py-16 md:py-24'
         >
-            <div className='flex flex-col gap-6 md:flex-row md:items-end md:justify-between'>
+            <div className='flex flex-col gap-6 md:flex-row md:items-start md:justify-between'>
                 <div>
                     <p className='font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent'>
                         {t('fixtures.eyebrow')}
@@ -204,6 +214,17 @@ export function FixturesSection() {
                                 </SelectContent>
                             </Select>
                         </label>
+                    </div>
+
+                    <div className='flex justify-end'>
+                        <button
+                            type='button'
+                            onClick={clearFilters}
+                            disabled={filtersAreDefault}
+                            className='inline-flex items-center rounded-full border border-border bg-card px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider text-foreground transition-colors hover:border-foreground/40 disabled:cursor-not-allowed disabled:opacity-40'
+                        >
+                            {t('fixtures.clearFilters')}
+                        </button>
                     </div>
                 </div>
             </div>

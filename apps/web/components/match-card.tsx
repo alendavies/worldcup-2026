@@ -72,7 +72,7 @@ function TeamRow({
     );
 }
 
-export function MatchCard({ match }: { match: UiMatch }) {
+export function MatchCard({ match, hideDate }: { match: UiMatch; hideDate?: boolean }) {
     const { lang } = useLanguage();
     const showScore = match.status !== 'upcoming';
     const isLive = match.status === 'live';
@@ -116,7 +116,11 @@ export function MatchCard({ match }: { match: UiMatch }) {
 
             <div className="flex items-center justify-between gap-2 border-t border-border pt-3 font-mono text-xs text-muted-foreground">
                 <span className="truncate">
-                    {match.status === 'upcoming'
+                    {hideDate
+                        ? match.status === 'upcoming'
+                            ? match.kickoff
+                            : ''
+                        : match.status === 'upcoming'
                         ? `${dateLabel(match.date, lang)} · ${match.kickoff}`
                         : dateLabel(match.date, lang)}
                 </span>

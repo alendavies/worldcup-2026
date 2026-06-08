@@ -15,13 +15,14 @@ import {
     type FixtureStatusFilter,
 } from '@/components/web-data';
 import { useMemo, useState } from 'react';
+import { dateLabel } from '@/lib/i18n';
 
 export function FixturesSection() {
-    const { t } = useLanguage();
+    const { t, lang } = useLanguage();
     const [active, setActive] = useState<FixtureStatusFilter>('upcoming');
     const [selectedGroup, setSelectedGroup] = useState<string>('all');
     const [selectedTeam, setSelectedTeam] = useState<string>('all');
-    const [visibleCount, setVisibleCount] = useState(12);
+    const [visibleGroupCount, setVisibleGroupCount] = useState(3);
 
     const filters: { label: string; value: FixtureStatusFilter }[] = [
         { label: t('fixtures.filter.all'), value: 'all' },
@@ -89,33 +90,45 @@ export function FixturesSection() {
         });
     }, [active, selectedGroup, selectedTeam]);
 
-    const visibleMatches = filtered.slice(0, visibleCount);
-    const canLoadMore = visibleCount < filtered.length;
+    const allGroupedMatches = useMemo(() => {
+        const groups = new Map<string, typeof filtered>();
+        for (const match of filtered) {
+            const date = match.date;
+            if (!groups.has(date)) {
+                groups.set(date, []);
+            }
+            groups.get(date)!.push(match);
+        }
+        return Array.from(groups.entries());
+    }, [filtered]);
+
+    const visibleGroups = allGroupedMatches.slice(0, visibleGroupCount);
+    const canLoadMore = visibleGroupCount < allGroupedMatches.length;
 
     const loadMore = () => {
-        setVisibleCount((current) => current + 12);
+        setVisibleGroupCount((current) => current + 3);
     };
 
     const updateStatus = (value: FixtureStatusFilter) => {
         setActive(value);
-        setVisibleCount(12);
+        setVisibleGroupCount(3);
     };
 
     const updateGroup = (value: string) => {
         setSelectedGroup(value);
-        setVisibleCount(12);
+        setVisibleGroupCount(3);
     };
 
     const updateTeam = (value: string) => {
         setSelectedTeam(value);
-        setVisibleCount(12);
+        setVisibleGroupCount(3);
     };
 
     const clearFilters = () => {
         setActive('upcoming');
         setSelectedGroup('all');
         setSelectedTeam('all');
-        setVisibleCount(12);
+        setVisibleGroupCount(3);
     };
 
     const filtersAreDefault =
@@ -229,9 +242,20 @@ export function FixturesSection() {
                 </div>
             </div>
 
-            <div className='mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
-                {visibleMatches.map((match) => (
-                    <MatchCard key={match.id} match={match} />
+            <div className='mt-10 flex flex-col gap-10'>
+                {visibleGroups.map(([date, matches]) => (
+                    <div key={date} className='flex flex-col gap-4'>
+                        <div className='sticky top-16 z-10 bg-background/95 py-2 backdrop-blur'>
+                            <h3 className='font-mono text-sm font-bold uppercase tracking-wider text-foreground'>
+                                {dateLabel(date, lang)}
+                            </h3>
+                        </div>
+                        <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+                            {matches.map((match) => (
+                                <MatchCard key={match.id} match={match} hideDate />
+                            ))}
+                        </div>
+                    </div>
                 ))}
             </div>
 

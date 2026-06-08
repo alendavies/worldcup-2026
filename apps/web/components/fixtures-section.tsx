@@ -21,6 +21,7 @@ export function FixturesSection() {
     const [active, setActive] = useState<FixtureStatusFilter>('upcoming');
     const [selectedGroup, setSelectedGroup] = useState<string>('all');
     const [selectedTeam, setSelectedTeam] = useState<string>('all');
+    const [visibleCount, setVisibleCount] = useState(12);
 
     const filters: { label: string; value: FixtureStatusFilter }[] = [
         { label: t('fixtures.filter.all'), value: 'all' },
@@ -88,6 +89,28 @@ export function FixturesSection() {
         });
     }, [active, selectedGroup, selectedTeam]);
 
+    const visibleMatches = filtered.slice(0, visibleCount);
+    const canLoadMore = visibleCount < filtered.length;
+
+    const loadMore = () => {
+        setVisibleCount((current) => current + 12);
+    };
+
+    const updateStatus = (value: FixtureStatusFilter) => {
+        setActive(value);
+        setVisibleCount(12);
+    };
+
+    const updateGroup = (value: string) => {
+        setSelectedGroup(value);
+        setVisibleCount(12);
+    };
+
+    const updateTeam = (value: string) => {
+        setSelectedTeam(value);
+        setVisibleCount(12);
+    };
+
     return (
         <section
             id='fixtures'
@@ -110,7 +133,7 @@ export function FixturesSection() {
                             <Select
                                 value={active}
                                 onValueChange={(value) =>
-                                    setActive(value as FixtureStatusFilter)
+                                    updateStatus(value as FixtureStatusFilter)
                                 }
                             >
                                 <SelectTrigger className='h-12 w-full rounded-full border-border bg-card px-4 text-xs text-foreground'>
@@ -138,9 +161,7 @@ export function FixturesSection() {
                             <span>{t('fixtures.group.label')}</span>
                             <Select
                                 value={selectedGroup}
-                                onValueChange={(value) =>
-                                    setSelectedGroup(value ?? 'all')
-                                }
+                                onValueChange={(value) => updateGroup(value ?? 'all')}
                             >
                                 <SelectTrigger className='h-12 w-full rounded-full border-border bg-card px-4 text-xs text-foreground'>
                                     <SelectValue
@@ -164,9 +185,7 @@ export function FixturesSection() {
                             <span>{t('fixtures.team.label')}</span>
                             <Select
                                 value={selectedTeam}
-                                onValueChange={(value) =>
-                                    setSelectedTeam(value ?? 'all')
-                                }
+                                onValueChange={(value) => updateTeam(value ?? 'all')}
                             >
                                 <SelectTrigger className='h-10 w-full rounded-full border-border bg-card px-4 text-xs text-foreground'>
                                     <SelectValue
@@ -190,10 +209,22 @@ export function FixturesSection() {
             </div>
 
             <div className='mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
-                {filtered.map((match) => (
+                {visibleMatches.map((match) => (
                     <MatchCard key={match.id} match={match} />
                 ))}
             </div>
+
+            {canLoadMore && (
+                <div className='mt-8 flex justify-center'>
+                    <button
+                        type='button'
+                        onClick={loadMore}
+                        className='inline-flex items-center rounded-full border border-border bg-card px-5 py-2 font-mono text-xs font-bold uppercase tracking-wider text-foreground transition-colors hover:border-foreground/40'
+                    >
+                        {t('fixtures.loadMore')}
+                    </button>
+                </div>
+            )}
 
             {filtered.length === 0 && (
                 <div className='mt-12 flex flex-col items-center gap-2 rounded-xl border border-dashed border-border py-16 text-center'>

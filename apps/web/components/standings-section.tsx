@@ -32,7 +32,7 @@ export function StandingsSection() {
                             key={group}
                             onClick={() => setActive(group)}
                             aria-pressed={active === group}
-                            className={`rounded-full px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider transition-all ${
+                            className={`rounded-full px-4 py-3 md:py-2 font-mono text-xs font-bold uppercase tracking-wider transition-all ${
                                 active === group
                                     ? 'bg-accent text-accent-foreground shadow-sm'
                                     : 'border border-border bg-card text-muted-foreground hover:border-foreground/40 hover:text-foreground'
@@ -110,7 +110,7 @@ export function StandingsSection() {
                                         <td className='px-4 py-3'>
                                             <Link
                                                 href={`/team/${row.team.id}`}
-                                                className='flex items-center gap-2.5 hover:opacity-80 transition-opacity'
+                                                className='flex min-h-11 items-center gap-2.5 hover:opacity-80 transition-opacity'
                                             >
                                                 <Flag
                                                     team={row.team}

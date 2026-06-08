@@ -24,7 +24,7 @@ export function ThemeToggle() {
             onClick={() => setTheme(isObscure ? 'light' : 'dark')}
             aria-label={ariaLabel}
             title={title}
-            className="group relative flex h-9 items-center gap-2 rounded-full border border-border bg-secondary px-1.5 font-mono text-[10px] font-bold uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground"
+            className="group relative flex h-9 items-center gap-2 rounded-full border border-border bg-secondary px-1.5 font-mono text-[0.625rem] font-bold uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground"
         >
             <span
                 className={`flex h-6 w-6 items-center justify-center rounded-full transition-colors ${

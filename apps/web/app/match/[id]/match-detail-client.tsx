@@ -21,9 +21,9 @@ export function MatchDetailClient({ match }: { match: UiMatch }) {
                 variant='ghost'
                 render={<Link href='/#fixtures' />}
                 nativeButton={false}
-                className='mb-8 font-mono text-sm uppercase tracking-wider text-muted-foreground hover:text-foreground'
+                className='mb-8 min-h-11 font-mono text-sm uppercase tracking-wider text-muted-foreground hover:text-foreground'
             >
-                <ChevronLeft className='size-4' />
+                <ChevronLeft className='mr-2 size-4 md:size-5' />
                 {t('match.back')}
             </Button>
 
@@ -59,7 +59,7 @@ export function MatchDetailClient({ match }: { match: UiMatch }) {
                             </span>
                         </Link>
 
-                        <div className='flex flex-col items-center justify-center min-w-30'>
+                        <div className='flex flex-col items-center justify-center min-w-30 md:min-w-40 py-4 md:py-0'>
                             {showScore ? (
                                 <div className='flex items-center gap-4 text-5xl md:text-7xl font-black tabular-nums'>
                                     <span>{match.homeScore}</span>

@@ -25,7 +25,7 @@ export function LanguageToggle() {
                         type="button"
                         onClick={() => setLang(option.value)}
                         aria-pressed={active}
-                        className={`flex h-6 items-center rounded-full px-2.5 font-mono text-[11px] font-bold uppercase tracking-wider transition-colors ${
+                        className={`flex h-6 items-center rounded-full px-2.5 font-mono text-[0.6875rem] font-bold uppercase tracking-wider transition-colors ${
                             active
                                 ? 'bg-background text-foreground shadow-sm'
                                 : 'text-muted-foreground hover:text-foreground'

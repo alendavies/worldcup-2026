@@ -2,10 +2,10 @@ import type { UiTeam } from '@/components/web-data';
 import Image from 'next/image';
 
 const sizes = {
-    xs: 'h-3 w-[18px]',
-    sm: 'h-[14px] w-[21px]',
-    md: 'h-[18px] w-[27px]',
-    lg: 'h-[22px] w-[33px]',
+    xs: 'h-3 w-4.5',
+    sm: 'h-3.5 w-[1.3125rem]',
+    md: 'h-4.5 w-[1.6875rem]',
+    lg: 'h-5.5 w-[2.0625rem]',
 };
 
 export function Flag({

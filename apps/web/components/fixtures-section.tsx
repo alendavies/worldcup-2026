@@ -2,6 +2,7 @@
 
 import { useLanguage } from '@/components/language-provider';
 import { MatchCard } from '@/components/match-card';
+import { Button } from '@/components/ui/button';
 import {
     Select,
     SelectContent,
@@ -9,14 +10,13 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
-import { Button } from '@/components/ui/button';
 import {
     fixtureMatches,
     groupIds,
     type FixtureStatusFilter,
 } from '@/components/web-data';
-import { useMemo, useState } from 'react';
 import { dateLabel } from '@/lib/i18n';
+import { useMemo, useState } from 'react';
 
 export function FixturesSection() {
     const { t, lang } = useLanguage();
@@ -133,7 +133,9 @@ export function FixturesSection() {
     };
 
     const filtersAreDefault =
-        active === 'upcoming' && selectedGroup === 'all' && selectedTeam === 'all';
+        active === 'upcoming' &&
+        selectedGroup === 'all' &&
+        selectedTeam === 'all';
 
     return (
         <section
@@ -152,7 +154,7 @@ export function FixturesSection() {
 
                 <div className='flex flex-col gap-3 lg:min-w-105'>
                     <div className='grid grid-cols-1 gap-3 sm:grid-cols-3'>
-                        <label className='flex flex-col gap-1.5 font-mono text-[11px] uppercase tracking-wider text-muted-foreground'>
+                        <label className='flex flex-col gap-1.5 font-mono text-[0.6875rem] uppercase tracking-wider text-muted-foreground'>
                             <span>{t('fixtures.status.label')}</span>
                             <Select
                                 value={active}
@@ -160,7 +162,7 @@ export function FixturesSection() {
                                     updateStatus(value as FixtureStatusFilter)
                                 }
                             >
-                                <SelectTrigger className='h-12 w-full rounded-full border-border bg-card px-4 text-xs text-foreground'>
+                                <SelectTrigger className='h-12 md:h-10 w-full rounded-full border-border bg-card px-4 text-xs text-foreground'>
                                     <SelectValue
                                         placeholder={t('fixtures.status.label')}
                                     />
@@ -181,13 +183,15 @@ export function FixturesSection() {
                             </Select>
                         </label>
 
-                        <label className='flex flex-col gap-1.5 font-mono text-[11px] uppercase tracking-wider text-muted-foreground'>
+                        <label className='flex flex-col gap-1.5 font-mono text-[0.6875rem] uppercase tracking-wider text-muted-foreground'>
                             <span>{t('fixtures.group.label')}</span>
                             <Select
                                 value={selectedGroup}
-                                onValueChange={(value) => updateGroup(value ?? 'all')}
+                                onValueChange={(value) =>
+                                    updateGroup(value ?? 'all')
+                                }
                             >
-                                <SelectTrigger className='h-12 w-full rounded-full border-border bg-card px-4 text-xs text-foreground'>
+                                <SelectTrigger className='h-12 md:h-10 w-full rounded-full border-border bg-card px-4 text-xs text-foreground'>
                                     <SelectValue
                                         placeholder={t('fixtures.group.label')}
                                     />
@@ -205,13 +209,15 @@ export function FixturesSection() {
                             </Select>
                         </label>
 
-                        <label className='flex flex-col gap-1.5 font-mono text-[11px] uppercase tracking-wider text-muted-foreground'>
+                        <label className='flex flex-col gap-1.5 font-mono text-[0.6875rem] uppercase tracking-wider text-muted-foreground'>
                             <span>{t('fixtures.team.label')}</span>
                             <Select
                                 value={selectedTeam}
-                                onValueChange={(value) => updateTeam(value ?? 'all')}
+                                onValueChange={(value) =>
+                                    updateTeam(value ?? 'all')
+                                }
                             >
-                                <SelectTrigger className='h-10 w-full rounded-full border-border bg-card px-4 text-xs text-foreground'>
+                                <SelectTrigger className='h-12 md:h-10 w-full rounded-full border-border bg-card px-4 text-xs text-foreground'>
                                     <SelectValue
                                         placeholder={t('fixtures.team.label')}
                                     />
@@ -232,10 +238,10 @@ export function FixturesSection() {
 
                     <div className='flex justify-end'>
                         <Button
-                            variant="outline"
+                            variant='outline'
                             onClick={clearFilters}
                             disabled={filtersAreDefault}
-                            className='rounded-full px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider'
+                            className='rounded-full px-4 py-3 md:py-2 font-mono text-xs font-bold uppercase tracking-wider'
                         >
                             {t('fixtures.clearFilters')}
                         </Button>
@@ -253,7 +259,11 @@ export function FixturesSection() {
                         </div>
                         <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
                             {matches.map((match) => (
-                                <MatchCard key={match.id} match={match} hideDate />
+                                <MatchCard
+                                    key={match.id}
+                                    match={match}
+                                    hideDate
+                                />
                             ))}
                         </div>
                     </div>
@@ -263,9 +273,9 @@ export function FixturesSection() {
             {canLoadMore && (
                 <div className='mt-8 flex justify-center'>
                     <Button
-                        variant="outline"
+                        variant='outline'
                         onClick={loadMore}
-                        className='rounded-full px-5 py-2 font-mono text-xs font-bold uppercase tracking-wider'
+                        className='rounded-full px-5 py-3 md:py-2 font-mono text-xs font-bold uppercase tracking-wider'
                     >
                         {t('fixtures.loadMore')}
                     </Button>

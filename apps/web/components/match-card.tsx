@@ -18,7 +18,7 @@ function StatusBadge({
     const { t } = useLanguage();
     if (status === 'live') {
         return (
-            <Badge className='bg-accent text-accent-foreground px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-wider'>
+            <Badge className='bg-accent text-accent-foreground px-3 py-2 md:py-1.5 font-mono text-xs font-bold uppercase tracking-wider'>
                 <span className='size-1.5 animate-pulse rounded-full bg-accent-foreground mr-1.5' />
                 {t('match.live', { m: minute ?? 0 })}
             </Badge>
@@ -28,7 +28,7 @@ function StatusBadge({
         return (
             <Badge
                 variant='secondary'
-                className='px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-wider text-muted-foreground'
+                className='px-3 py-2 md:py-1.5 font-mono text-xs font-bold uppercase tracking-wider text-muted-foreground'
             >
                 {t('match.ft')}
             </Badge>
@@ -37,7 +37,7 @@ function StatusBadge({
     return (
         <Badge
             variant='outline'
-            className='px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-wider text-muted-foreground'
+            className='px-3 py-2 md:py-1.5 font-mono text-xs font-bold uppercase tracking-wider text-muted-foreground'
         >
             {t('match.upcoming')}
         </Badge>

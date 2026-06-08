@@ -103,3 +103,4 @@ temp/
 package-lock.json
 yarn.lock
 .opencode/
+*.md

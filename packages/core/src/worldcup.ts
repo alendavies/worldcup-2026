@@ -7,10 +7,24 @@ export type Team = {
 };
 
 export type Group = {
-    id: string;
+    id: GroupId;
     name: string;
     teamIds: string[];
 };
+
+export type GroupId =
+    | 'A'
+    | 'B'
+    | 'C'
+    | 'D'
+    | 'E'
+    | 'F'
+    | 'G'
+    | 'H'
+    | 'I'
+    | 'J'
+    | 'K'
+    | 'L';
 
 export type MatchStage =
     | 'group'
@@ -28,7 +42,7 @@ export type StaticMatch = {
     externalApiId?: string;
 
     stage: MatchStage;
-    groupId?: string;
+    groupId?: GroupId;
 
     homeTeamId?: string;
     awayTeamId?: string;

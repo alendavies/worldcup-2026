@@ -1,18 +1,20 @@
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { mergeMatchData } from '@worldcup/core';
+import { getTeamById, mergeMatchData, sortMatchesByDate } from '@worldcup/core';
 import { dynamicMatchesMock, staticMatches, teams } from '@worldcup/data';
 
 function getTeamName(teamId?: string) {
     if (!teamId) return 'TBD';
 
-    const team = teams.find((team) => team.id === teamId);
+    const team = getTeamById(teams, teamId);
 
     return team ? `${team.flagEmoji ?? ''} ${team.name}` : 'Unknown';
 }
 
 export default function Home() {
-    const matches = mergeMatchData(staticMatches, dynamicMatchesMock);
+    const matches = sortMatchesByDate(
+        mergeMatchData(staticMatches, dynamicMatchesMock),
+    );
 
     return (
         <main className='mx-auto flex max-w-5xl flex-col gap-6 px-6 py-10'>

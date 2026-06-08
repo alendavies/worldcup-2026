@@ -1,17 +1,19 @@
-import { mergeMatchData } from '@worldcup/core';
+import { getTeamById, mergeMatchData, sortMatchesByDate } from '@worldcup/core';
 import { dynamicMatchesMock, staticMatches, teams } from '@worldcup/data';
 import { ScrollView, Text, View } from 'react-native';
 
 function getTeamName(teamId?: string) {
     if (!teamId) return 'TBD';
 
-    const team = teams.find((team) => team.id === teamId);
+    const team = getTeamById(teams, teamId);
 
     return team ? `${team.flagEmoji ?? ''} ${team.name}` : 'Unknown';
 }
 
 export default function HomeScreen() {
-    const matches = mergeMatchData(staticMatches, dynamicMatchesMock);
+    const matches = sortMatchesByDate(
+        mergeMatchData(staticMatches, dynamicMatchesMock),
+    );
 
     return (
         <ScrollView className='flex-1 bg-white'>

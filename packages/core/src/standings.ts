@@ -1,9 +1,9 @@
-import type { MatchView, Standing, Team } from './worldcup';
+import type { GroupId, MatchView, Standing, Team } from './worldcup';
 
 export function calculateStandings(
     teams: Team[],
     matches: MatchView[],
-    groupId: string,
+    groupId: GroupId,
 ): Standing[] {
     const groupTeams = teams.filter((team) => team.groupId === groupId);
 

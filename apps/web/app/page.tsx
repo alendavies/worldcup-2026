@@ -1,6 +1,11 @@
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { getTeamById, mergeMatchData, sortMatchesByDate } from '@worldcup/core';
+import {
+    calculateStandings,
+    getTeamById,
+    mergeMatchData,
+    sortMatchesByDate,
+} from '@worldcup/core';
 import { dynamicMatchesMock, staticMatches, teams } from '@worldcup/data';
 
 function getTeamName(teamId?: string) {
@@ -15,6 +20,7 @@ export default function Home() {
     const matches = sortMatchesByDate(
         mergeMatchData(staticMatches, dynamicMatchesMock),
     );
+    const groupStandings = calculateStandings(teams, matches, 'A');
 
     return (
         <main className='mx-auto flex max-w-5xl flex-col gap-6 px-6 py-10'>
@@ -60,6 +66,66 @@ export default function Home() {
                         </CardContent>
                     </Card>
                 ))}
+            </section>
+
+            <section>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Group A standings</CardTitle>
+                    </CardHeader>
+
+                    <CardContent>
+                        <div className='grid grid-cols-[1fr_repeat(6,2.5rem)] gap-2 text-sm'>
+                            <div className='font-medium text-muted-foreground'>
+                                Team
+                            </div>
+                            <div className='text-right font-medium text-muted-foreground'>
+                                P
+                            </div>
+                            <div className='text-right font-medium text-muted-foreground'>
+                                W
+                            </div>
+                            <div className='text-right font-medium text-muted-foreground'>
+                                D
+                            </div>
+                            <div className='text-right font-medium text-muted-foreground'>
+                                L
+                            </div>
+                            <div className='text-right font-medium text-muted-foreground'>
+                                GD
+                            </div>
+                            <div className='text-right font-medium text-muted-foreground'>
+                                Pts
+                            </div>
+
+                            {groupStandings.map((standing) => (
+                                <div key={standing.teamId} className='contents'>
+                                    <div className='font-medium'>
+                                        {getTeamName(standing.teamId)}
+                                    </div>
+                                    <div className='text-right'>
+                                        {standing.played}
+                                    </div>
+                                    <div className='text-right'>
+                                        {standing.won}
+                                    </div>
+                                    <div className='text-right'>
+                                        {standing.drawn}
+                                    </div>
+                                    <div className='text-right'>
+                                        {standing.lost}
+                                    </div>
+                                    <div className='text-right'>
+                                        {standing.goalDifference}
+                                    </div>
+                                    <div className='text-right font-bold'>
+                                        {standing.points}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </CardContent>
+                </Card>
             </section>
         </main>
     );

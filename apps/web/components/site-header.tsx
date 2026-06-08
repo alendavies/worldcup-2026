@@ -22,15 +22,13 @@ export function SiteHeader() {
         <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur">
             <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-3">
                 <a href="#" className="flex items-center gap-2.5">
-                    <span className="flex h-8 w-8 items-center justify-center rounded-md bg-foreground">
-                        <Image
-                            src="/brand/fifa-mono.svg"
-                            alt="FIFA"
-                            width={20}
-                            height={20}
-                            className="h-5 w-5 [filter:invert(1)] dark:[filter:invert(0)]"
-                        />
-                    </span>
+                    <Image
+                        src="/brand/wc26-logo.png"
+                        alt="FIFA World Cup 26"
+                        width={48}
+                        height={48}
+                        className="h-12 w-12 object-contain"
+                    />
                     <span className="flex flex-col leading-none">
                         <span className="font-mono text-sm font-black uppercase tracking-tight">
                             World Cup <span className="text-accent">26</span>

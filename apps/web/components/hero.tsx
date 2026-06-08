@@ -33,15 +33,13 @@ export function Hero() {
 
             <div className="relative mx-auto w-full max-w-6xl px-5 pb-12 pt-20 md:pb-16 md:pt-28">
                 <div className="flex items-center gap-3">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-md bg-zinc-50">
-                        <Image
-                            src="/brand/fifa.svg"
-                            alt="FIFA"
-                            width={22}
-                            height={22}
-                            className="h-[22px] w-[22px]"
-                        />
-                    </span>
+                    <Image
+                        src="/brand/wc26-logo.png"
+                        alt="FIFA World Cup 26"
+                        width={64}
+                        height={64}
+                        className="h-16 w-16 object-contain"
+                    />
                     <div className="inline-flex items-center gap-2 rounded-full border border-zinc-50/20 bg-zinc-50/10 px-3 py-1.5 backdrop-blur">
                         <span className="size-1.5 rounded-full bg-pitch" />
                         <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-zinc-50/80">

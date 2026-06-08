@@ -9,6 +9,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
+import { Button } from '@/components/ui/button';
 import {
     fixtureMatches,
     groupIds,
@@ -230,14 +231,14 @@ export function FixturesSection() {
                     </div>
 
                     <div className='flex justify-end'>
-                        <button
-                            type='button'
+                        <Button
+                            variant="outline"
                             onClick={clearFilters}
                             disabled={filtersAreDefault}
-                            className='inline-flex items-center rounded-full border border-border bg-card px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider text-foreground transition-colors hover:border-foreground/40 disabled:cursor-not-allowed disabled:opacity-40'
+                            className='rounded-full px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider'
                         >
                             {t('fixtures.clearFilters')}
-                        </button>
+                        </Button>
                     </div>
                 </div>
             </div>
@@ -261,13 +262,13 @@ export function FixturesSection() {
 
             {canLoadMore && (
                 <div className='mt-8 flex justify-center'>
-                    <button
-                        type='button'
+                    <Button
+                        variant="outline"
                         onClick={loadMore}
-                        className='inline-flex items-center rounded-full border border-border bg-card px-5 py-2 font-mono text-xs font-bold uppercase tracking-wider text-foreground transition-colors hover:border-foreground/40'
+                        className='rounded-full px-5 py-2 font-mono text-xs font-bold uppercase tracking-wider'
                     >
                         {t('fixtures.loadMore')}
-                    </button>
+                    </Button>
                 </div>
             )}
 

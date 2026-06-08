@@ -30,13 +30,10 @@ export function KnockoutSection() {
                         const isFinal = round === 'Final';
                         return (
                             <div key={round} className="flex flex-col gap-4">
-                                <div className="flex items-center justify-between">
-                                    <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-zinc-50/50">
+                                <div className="flex items-center justify-center">
+                                    <h3 className="text-center font-mono text-xs font-bold uppercase tracking-wider text-zinc-50/50">
                                         {roundName(round, lang)}
                                     </h3>
-                                    <span className="font-mono text-xs text-zinc-50/30">
-                                        0{index + 1}
-                                    </span>
                                 </div>
                                 <div className="flex flex-1 flex-col justify-around gap-4">
                                     {items.map((match) => (

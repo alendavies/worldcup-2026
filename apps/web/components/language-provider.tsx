@@ -18,9 +18,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     useEffect(() => {
         const stored = window.localStorage.getItem(STORAGE_KEY) as Lang | null;
         if (stored === 'en' || stored === 'es') {
-            setLangState(stored);
+            setTimeout(() => setLangState(stored), 0);
         } else if (navigator.language.toLowerCase().startsWith('es')) {
-            setLangState('es');
+            setTimeout(() => setLangState('es'), 0);
         }
     }, []);
 

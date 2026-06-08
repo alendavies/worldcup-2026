@@ -30,7 +30,7 @@ export function KnockoutSection() {
                 </h2>
 
                 <div className='mt-10 grid grid-cols-1 gap-8 md:grid-cols-4 md:gap-5'>
-                    {rounds.map((round, _) => {
+                    {rounds.map((round) => {
                         const items = knockoutMatches.filter(
                             (match) => match.round === round,
                         );

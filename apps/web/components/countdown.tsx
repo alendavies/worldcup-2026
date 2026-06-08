@@ -14,7 +14,13 @@ export function Countdown({ targetDate }: { targetDate: string }) {
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
-        setIsMounted(true);
+        const timer = setTimeout(() => setIsMounted(true), 0);
+        return () => clearTimeout(timer);
+    }, []);
+
+    useEffect(() => {
+        if (!isMounted) return;
+
         const target = new Date(targetDate).getTime();
 
         const updateCountdown = () => {
@@ -41,7 +47,7 @@ export function Countdown({ targetDate }: { targetDate: string }) {
         const interval = setInterval(updateCountdown, 1000);
 
         return () => clearInterval(interval);
-    }, [targetDate]);
+    }, [targetDate, isMounted]);
 
     if (!isMounted) {
         return null; // Avoid hydration mismatch
@@ -96,7 +102,7 @@ export function Countdown({ targetDate }: { targetDate: string }) {
                 <span className='text-lg sm:text-xl font-black text-zinc-50/30 hidden sm:inline'>
                     :
                 </span>
-                <div className='flex flex-col items-center justify-center rounded-xl border border-zinc-50/15 bg-zinc-950/40 px-3 sm:px-4 py-2 sm:py-3 backdrop-blur min-w-16 sm:min-w-18 hidden sm:flex'>
+                <div className='hidden flex-col items-center justify-center rounded-xl border border-zinc-50/15 bg-zinc-950/40 px-3 sm:px-4 py-2 sm:py-3 backdrop-blur min-w-16 sm:min-w-18 sm:flex'>
                     <span className='text-xl sm:text-2xl font-black tabular-nums text-zinc-50'>
                         {timeLeft.seconds.toString().padStart(2, '0')}
                     </span>

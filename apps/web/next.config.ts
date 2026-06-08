@@ -6,6 +6,14 @@ const nextConfig: NextConfig = {
         '@worldcup/data',
         '@worldcup/api-client',
     ],
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'flagcdn.com',
+            },
+        ],
+    },
 };
 
 export default nextConfig;

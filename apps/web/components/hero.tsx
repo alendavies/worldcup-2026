@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import { useLanguage } from '@/components/language-provider';
-import { heroStats } from '@/components/web-data';
+import { heroStats, firstMatch } from '@/components/web-data';
+import { Countdown } from '@/components/countdown';
 
 export function Hero() {
     const { t } = useLanguage();
@@ -78,6 +79,8 @@ export function Hero() {
                         </div>
                     ))}
                 </div>
+
+                <Countdown targetDate={firstMatch.date} />
 
                 <dl className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-zinc-50/15 bg-zinc-50/15 sm:grid-cols-4">
                     {stats.map((stat) => (

@@ -1,7 +1,8 @@
-import Image from 'next/image';
 import type { UiTeam } from '@/components/web-data';
+import Image from 'next/image';
 
 const sizes = {
+    xs: 'h-3 w-[18px]',
     sm: 'h-[14px] w-[21px]',
     md: 'h-[18px] w-[27px]',
     lg: 'h-[22px] w-[33px]',
@@ -16,8 +17,10 @@ export function Flag({
     size?: keyof typeof sizes;
     className?: string;
 }) {
-    const width = size === 'sm' ? 21 : size === 'lg' ? 33 : 27;
-    const height = size === 'sm' ? 14 : size === 'lg' ? 22 : 18;
+    const width =
+        size === 'xs' ? 18 : size === 'sm' ? 21 : size === 'lg' ? 33 : 27;
+    const height =
+        size === 'xs' ? 12 : size === 'sm' ? 14 : size === 'lg' ? 22 : 18;
 
     return (
         <Image
@@ -25,7 +28,7 @@ export function Flag({
             alt={`${team.name} flag`}
             width={width}
             height={height}
-            className={`${sizes[size]} shrink-0 rounded-[2px] object-cover ring-1 ring-border ${className}`}
+            className={`${sizes[size]} shrink-0 rounded-xs object-cover ring-1 ring-border ${className}`}
         />
     );
 }

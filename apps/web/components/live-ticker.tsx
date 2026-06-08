@@ -1,8 +1,8 @@
 'use client';
 
-import Image from 'next/image';
 import { useLanguage } from '@/components/language-provider';
 import { fixtureMatches } from '@/components/web-data';
+import { Flag } from '@/components/flag';
 
 export function LiveTicker() {
     const { t } = useLanguage();
@@ -29,25 +29,13 @@ export function LiveTicker() {
                                 key={`${match.id}-${index}`}
                                 className="flex shrink-0 items-center gap-2 font-mono text-xs"
                             >
-                                <Image
-                                    src={`https://flagcdn.com/${match.home.iso}.svg`}
-                                    alt=""
-                                    width={18}
-                                    height={12}
-                                    className="h-3 w-[18px] rounded-[1px] object-cover ring-1 ring-zinc-50/20"
-                                />
+                                <Flag team={match.home} size="xs" className="ring-zinc-50/20 rounded-[1px]" />
                                 <span className="font-bold">{match.home.code}</span>
                                 <span className="rounded bg-zinc-50/15 px-1.5 py-0.5 font-bold tabular-nums">
                                     {match.homeScore}-{match.awayScore}
                                 </span>
                                 <span className="font-bold">{match.away.code}</span>
-                                <Image
-                                    src={`https://flagcdn.com/${match.away.iso}.svg`}
-                                    alt=""
-                                    width={18}
-                                    height={12}
-                                    className="h-3 w-[18px] rounded-[1px] object-cover ring-1 ring-zinc-50/20"
-                                />
+                                <Flag team={match.away} size="xs" className="ring-zinc-50/20 rounded-[1px]" />
                                 {match.status === 'live' ? (
                                     <span className="text-accent">{match.minute}&apos;</span>
                                 ) : (

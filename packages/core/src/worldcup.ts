@@ -12,6 +12,13 @@ export type Group = {
     teamIds: string[];
 };
 
+export type Stadium = {
+    id: string;
+    name: string;
+    city: string;
+    country: string;
+};
+
 export type GroupId =
     | 'A'
     | 'B'
